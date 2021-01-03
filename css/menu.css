@@ -1,0 +1,38 @@
+#productType {
+  width: 30%;
+  display: flex;
+  list-style: none;
+}
+
+#productType li {
+  width: 20%;
+}
+
+button {
+  background-color: rgb(223, 169, 69);
+  width: 100%;
+  height: auto;
+  border: none;
+}
+
+#menuListOrder {
+  display: flex;
+}
+
+.menuList {
+  display: flex;
+}
+
+.list {
+  height: auto;
+  width: 100%;
+}
+
+.each {
+  text-align: center;
+}
+
+img{
+  width: 300px;
+  height: 280px;
+}
