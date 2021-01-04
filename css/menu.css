@@ -11,7 +11,7 @@
 button {
   background-color: rgb(223, 169, 69);
   width: 100%;
-  height: auto;
+  height: 80px;
   border: none;
 }
 
@@ -19,7 +19,8 @@ button {
   display: flex;
 }
 
-.menuList {
+#menuList {
+  width: 25%;
   display: flex;
 }
 
@@ -28,8 +29,40 @@ button {
   width: 100%;
 }
 
-.each {
+.eachItem {
   text-align: center;
+  flex: 1;
+}
+#orderList {
+  width: 25%;
+}
+
+#totalPrice {
+  display: flex;
+  justify-content: space-between;
+}
+#totalPrice div {
+  font-weight: 600;
+}
+
+#orderProductInfo {
+  display: flex;
+  justify-content: space-around;
+}
+
+#subtracItem {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (max-width: 800px) {
+  #menuList {
+    flex-direction: column;
+  }
+  .list {
+    width: 100px;
+    height: 80px;
+  }
 }
 
 /* img{

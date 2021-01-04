@@ -1,0 +1,19 @@
+{
+    "food" : [
+        {
+            "image" : "pizza1.png", 
+            "name" : "pizzaOne",
+            "price" : "20000"
+        },
+        {
+            "image" : "pizza2.png", 
+            "name" : "pizzaTwo",
+            "price" : "30000"
+        },
+        {
+            "image" : "pizza3.png", 
+            "name" : "pizzaThree",
+            "price" : "15000"
+        }
+    ]
+}
