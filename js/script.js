@@ -60,54 +60,19 @@ const food = [
             price : "20000"
         },
 ] // 값을 넣어주세요
-//container.className = 'menuListOrder'
-const container = document.querySelector('#menuListOrder')
-container.className = 'menuListOrder'
-
+const menuList = document.querySelector('#menuList')
 function render(food){
-const menuList = document.createElement('div')
-container.append(menuList)
-container.innerHTML += `
-<div id="menuList">
-    <div class="eachItem">
-        <img class="list" src="images/${food.image}" alt="food-image">
-        <p>${food.name}</p>
-        <p>${food.price}</p>
-        <button class="addButton">ADD CART</button>
-    </div>
-</div>`
+    const eachItem = document.createElement('div')
+    eachItem.className = "eachItem"
+    menuList.append(eachItem)
+    eachItem.innerHTML += `
+            <img class="list" src="images/${food.image}" alt="food-image">
+            <p>${food.name}</p>
+            <p>${food.price}</p>
+            <button class="addButton">ADD CART</button>`
 }
 
 
-
-setTimeout(function() {// ajax -> success
-    const orderList = document.createElement('div')
-    container.append(orderList)
-    container.innerHTML += `
-    <div id="orderList">
-        <h2>Your Oder</h2>
-        <div class="totalPrice">
-            <div>Total</div>
-            <div>₩50,000</div>
-        </div>
-        <div id="orderProductInfo">
-            <div>피자이름</div>
-            <div>피자가격</div>
-            <div>
-                <select>
-                    <option name="" id="" aria-placeholder="1">1</option>
-                </select>
-            </div>
-            <div><button id="subtracItem">-</button></div>
-        </div>
-        <button id="orderButton" name="orderButton" type="submit">PAYMENT</button>
-    </div>`
-}, 2000)
 // 1. createElement로 div 태그 만들기
 // 2. 만든 div에다가 innerHTML로 내용 넣기
 // 3. div태그를 append로 붙여넣기
-
-git config --global user.email "nyb0813@naver.com"
-git config --global user.name "nohyoungbeen"
-
-email이랑 name을 변경해주세요!
