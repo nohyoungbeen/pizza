@@ -41,22 +41,22 @@ setTimeout(function() {// ajax -> success
     // render(data[2])
     // render(data[3])
     // render(data[4])
-}, 2000)
+}, 500)
 
 const food = [
         {
             image : "pizza1.png", 
             name : "pizzaOne",
-            price : "20000"
+            price : "10000"
         },
         {
             image : "pizza2.png", 
-            name : "pizzaOne",
-            price : "20000"
+            name : "pizzaTwo",
+            price : "30000"
         },
         {
             image : "pizza3.png", 
-            name : "pizzaOne",
+            name : "pizzaThree",
             price : "20000"
         },
 ] // 값을 넣어주세요
@@ -65,13 +65,48 @@ function render(food){
     const eachItem = document.createElement('div')
     eachItem.className = "eachItem"
     menuList.append(eachItem)
-    eachItem.innerHTML += `
-            <img class="list" src="images/${food.image}" alt="food-image">
-            <p>${food.name}</p>
-            <p>${food.price}</p>
-            <button class="addButton">ADD CART</button>`
-}
 
+    const foodPic = document.createElement('img')
+    foodPic.className = "list"
+    foodPic.src=`images/${food.image}`
+    foodPic.alt="food-image"
+    eachItem.append(foodPic)
+
+    const foodName = document.createElement('p')
+    foodName.innerHTML = food.name
+    eachItem.append(foodName)
+
+    const foodPrice = document.createElement('p')
+    foodPrice.innerHTML = food.price
+    eachItem.append(foodPrice)
+
+    const addButton = document.createElement('button')
+    addButton.classList.add("addButton")
+    addButton.append("ADD CART")
+    eachItem.append(addButton)
+    
+
+    addButton.addEventListener('click',function(){
+        const orderList = document.querySelector('#orderList')
+        const orderItem =  document.createElement('li')
+        const foodName = document.createElement('span')
+        const foodPrice = document.createElement('span')
+        const foodAmount = document.createElement('span')
+        orderList.classList.add("orderItem")
+        orderList.append(orderItem)
+        orderItem.append(foodName)
+        orderItem.append(foodPrice)   
+        orderItem.append(foodAmount)
+        foodName.append(food.name)
+        foodPrice.append(food.price)
+        foodAmount.append("1")
+    })
+    // eachItem.innerHTML += `
+    //         <img class="list" src="images/${food.image}" alt="food-image">
+    //         <p>${food.name}</p>
+    //         <p>${food.price}</p>
+    //         <button class="addButton">ADD CART</button>`
+}
 
 // 1. createElement로 div 태그 만들기
 // 2. 만든 div에다가 innerHTML로 내용 넣기
