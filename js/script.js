@@ -27,10 +27,14 @@
 // selectAjax()
 
 // setTimeout -> render
+// 3000 return
+function totalPrice(food){
+    return food.price*food.amount
+}
 
 setTimeout(function() {// ajax -> success
-    for(let i = 0 ; i < food.length; i++ ){
-        render(food[i])
+    for(let i = 0 ; i < foodArray.length; i++ ){
+        render(foodArray[i])
     }
     // const obj = {
     //     inputName: 'input1',
@@ -43,23 +47,50 @@ setTimeout(function() {// ajax -> success
     // render(data[4])
 }, 500)
 
-const food = [
+const foodArray = [
         {
             image : "pizza1.png", 
             name : "pizzaOne",
-            price : "10000"
+            price : "10000",
         },
         {
             image : "pizza2.png", 
             name : "pizzaTwo",
-            price : "30000"
+            price : "30000",
         },
         {
             image : "pizza3.png", 
             name : "pizzaThree",
-            price : "20000"
+            price : "20000",
         },
-] // 값을 넣어주세요
+] 
+
+const orderArray = []
+    // {
+    //     
+    //     name : "pizzaOne",
+    //     price : "10000",
+    //     amount : "1"
+    // },
+    // {
+    //     
+    //     name : "pizzaTwo",
+    //     price : "30000",
+    //     amount : "3"
+    // },
+    // {
+    //     
+    //     name : "pizzaThree",
+    //     price : "20000",
+    //     amount : "5"
+    // },
+//] 
+
+
+
+
+
+// 값을 넣어주세요
 const menuList = document.querySelector('#menuList')
 function render(food){
     const eachItem = document.createElement('div')
@@ -87,6 +118,23 @@ function render(food){
     
 
     addButton.addEventListener('click',function(){
+        addItem(food)
+        const total = totalPrice(food)
+        const itemPrice = document.querySelector('#totalPrice')
+        itemPrice.innerHTML = `₩ ${total}`   
+        // orderArray에 데이터 추가 
+        // 
+    })
+
+   
+    // eachItem.innerHTML += `
+    //         <img class="list" src="images/${food.image}" alt="food-image">
+    //         <p>${food.name}</p>
+    //         <p>${food.price}</p>
+    //         <button class="addButton">ADD CART</button>`
+}
+
+function addItem(food){
         const orderList = document.querySelector('#orderList')
         const orderItem =  document.createElement('li')
         const foodName = document.createElement('span')
@@ -99,13 +147,7 @@ function render(food){
         orderItem.append(foodAmount)
         foodName.append(food.name)
         foodPrice.append(food.price)
-        foodAmount.append("1")
-    })
-    // eachItem.innerHTML += `
-    //         <img class="list" src="images/${food.image}" alt="food-image">
-    //         <p>${food.name}</p>
-    //         <p>${food.price}</p>
-    //         <button class="addButton">ADD CART</button>`
+        foodAmount.append(food.amount)
 }
 
 // 1. createElement로 div 태그 만들기
