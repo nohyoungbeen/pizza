@@ -1,14 +1,3 @@
-
-function totalPrice(food){
-    return food.price*food.amount
-}
-
-setTimeout(function() {// ajax -> success
-    for(let i = 0 ; i < foodArray.length; i++ ){
-        render(foodArray[i])
-    }
-}, 500)
-
 const foodArray = [
         {
             image : "pizza1.png", 
@@ -26,64 +15,66 @@ const foodArray = [
             price : "20000",
         },
 ] 
+// function setTimeout(){
+// for(let i = 0; i < render.length; ++i){
+//         render()
+//     }
+// },500)
 
 const orderArray = [
-    
 ] 
 
 
-// 값을 넣어주세요
-const menuList = document.querySelector('#menuList')
-function render(food){
-    const eachItem = document.createElement('div')
-    eachItem.className = "eachItem"
-    menuList.append(eachItem)
+for(let i = 0; i < foodArray.length; ++i){
+    render(foodArray[i])
+}
 
-    const foodPic = document.createElement('img')
-    foodPic.className = "list"
-    foodPic.src=`images/${food.image}`
-    foodPic.alt="food-image"
-    eachItem.append(foodPic)
+function render(foodObject){
+    const menuList = document.querySelector('#menuList')
+    const eachItem = document.createElement('div')
+    menuList.append(eachItem)
+    const foodImage = document.createElement('img')
+    foodImage.classList.add('list')
+    foodImage.src = "images/" + foodObject.image
+    foodImage.alt = "food-image"
+    eachItem.append(foodImage)
+    foodImage.append(foodObject.image)
 
     const foodName = document.createElement('p')
-    foodName.innerHTML = food.name
     eachItem.append(foodName)
+    foodName.append(foodObject.name)
 
     const foodPrice = document.createElement('p')
-    foodPrice.innerHTML = food.price
     eachItem.append(foodPrice)
+    foodPrice.append(foodObject.price)
 
     const addButton = document.createElement('button')
-    addButton.classList.add("addButton")
-    addButton.append("ADD CART")
     eachItem.append(addButton)
-    
+    addButton.append("주문목록에 추가")
 
-    addButton.addEventListener('click',function(){
-        const name = food.name
-        const price = food.price
-        const amount = 1
-        const orderItem = {name : name, price : price , amount : amount}
-        orderArray.push(orderItem)
-        addItem(orderItem)
-        const total = totalPrice(orderItem)
-        const itemPrice = document.querySelector('#totalPrice')
-        itemPrice.innerHTML = `₩ ${total}`
+    addButton.addEventListener('click', function(){
+        addCart(foodObject)
     })
 }
 
-function addItem(orderArray){
-        const orderList = document.querySelector('#orderList')
-        const orderItem =  document.createElement('li')
-        const foodName = document.createElement('span')
-        const foodPrice = document.createElement('span')
-        const foodAmount = document.createElement('span')
-        orderList.classList.add("orderItem")
-        orderList.append(orderItem)
-        orderItem.append(foodName)
-        orderItem.append(foodPrice)   
-        orderItem.append(foodAmount)
-        foodName.append(orderArray.name)
-        foodPrice.append(orderArray.price)
-        foodAmount.append(orderArray.amount)
+function addCart(foodObject){
+    const orderList = document.querySelector('#orderList')
+    const orderItem = document.createElement('li')
+    orderList.append(orderItem)
+    const foodName = document.createElement('span')
+    orderItem.append(foodName)
+    const foodPrice = document.createElement('span')
+    orderItem.append(foodPrice)
+    const foodAmount = document.createElement('span')
+    orderItem.append(foodAmount)
+    foodName.append(foodObject.name)
+    foodPrice.append(foodObject.price)
+    foodAmount.append(1)
+    const foodInfo = {name:foodObject.name, price:foodObject.price, amount: 2}
+    // orderArray -> object(name, price, amount) push
+    orderArray.push(foodInfo)
+    console.log(orderArray)
+
+    const totalPrice = document.querySelector('#totalPrice')
+    totalPrice.innerHTML = foodInfo.price * foodInfo.amount
 }
